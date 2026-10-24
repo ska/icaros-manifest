@@ -1,0 +1,17 @@
+#!/bin/sh
+# Set up an IcarOS build directory (default: build) and enter it.
+# Usage: . ./setup-environment [builddir]
+
+if [ -n "$BASH_SOURCE" ]; then
+    TOPDIR=$(dirname "$(readlink -f "$BASH_SOURCE")")
+elif [ -n "$ZSH_NAME" ]; then
+    TOPDIR=$(dirname "$(readlink -f "$0")")
+else
+    TOPDIR=$(pwd)
+fi
+
+TEMPLATECONF="$TOPDIR/sources/meta-icaros/conf/templates/icaros-nas"
+export TEMPLATECONF
+
+. "$TOPDIR/sources/openembedded-core/oe-init-build-env" "${1:-build}"
+unset TOPDIR

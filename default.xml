@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote name="oe"     fetch="https://git.openembedded.org"/>
+  <remote name="yocto"  fetch="https://git.yoctoproject.org"/>
+  <remote name="ska"    fetch="https://github.com/ska" pushurl="ssh://git@github.com/ska"/>
+
+  <default remote="oe" revision="wrynose" sync-j="4"/>
+
+  <!-- Upstream -->
+  <project name="bitbake"           path="sources/bitbake"           revision="2.18"/>
+  <project name="openembedded-core" path="sources/openembedded-core"/>
+  <project name="meta-openembedded" path="sources/meta-openembedded"/>
+  <project name="meta-yocto"        path="sources/meta-yocto"        remote="yocto"/>
+
+  <!-- IcarOS -->
+  <project name="meta-kirkwood"     path="sources/meta-kirkwood"     remote="ska"/>
+  <project name="meta-icaros"       path="sources/meta-icaros"       remote="ska"/>
+
+  <!-- Build environment helper -->
+  <project name="icaros-manifest"   path="sources/icaros-manifest"   remote="ska">
+    <copyfile src="setup-environment" dest="setup-environment"/>
+  </project>
+</manifest>
